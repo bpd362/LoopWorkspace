@@ -27,7 +27,8 @@ platform :ios do
   desc "Build Loop"
   lane :build_loop do
     setup_ci if ENV['CI']
-    
+    ENV["MATCH_READONLY"] = false.to_s
+
     update_project_team(
       path: "#{GITHUB_WORKSPACE}/Loop/Loop.xcodeproj",
       teamid: "#{TEAMID}"
@@ -53,7 +54,6 @@ platform :ios do
     
     match(
       type: "appstore",
-      ENV["MATCH_READONLY"] = false.to_s
       git_basic_authorization: Base64.strict_encode64("#{GITHUB_REPOSITORY_OWNER}:#{GH_PAT}"),
       app_identifier: [
         "com.#{TEAMID}.loopkit.Loop", 
