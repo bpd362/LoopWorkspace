@@ -27,8 +27,7 @@ platform :ios do
   desc "Build Loop"
   lane :build_loop do
     setup_ci if ENV['CI']
-    ENV["MATCH_READONLY"] = false.to_s
-
+    
     update_project_team(
       path: "#{GITHUB_WORKSPACE}/Loop/Loop.xcodeproj",
       teamid: "#{TEAMID}"
@@ -171,26 +170,12 @@ platform :ios do
       key_content: "#{FASTLANE_KEY}"
     )
 
-#    def configure_bundle_id(name, identifier, capabilities)
-#      bundle_id = Spaceship::ConnectAPI::BundleId.find(identifier) || Spaceship::ConnectAPI::BundleId.create(name: name, identifier: identifier)
-#      capabilities.each { |capability|
-#        bundle_id.create_capability(capability)
-#      }
-#   end
-
-#
     def configure_bundle_id(name, identifier, capabilities)
-      bundle_id = Spaceship::ConnectAPI::BundleId.find(identifier) || Spaceship::ConnectAPI::BundleId.create(
-        name:       name,
-        identifier: identifier,
-        platform:   "IOS"
-      )
-      existing = bundle_id.get_capabilities.map(&:capability_type)
-      capabilities.reject { |c| existing.include?(c) }.each do |cap|
-        bundle_id.create_capability(cap)
-      end
+      bundle_id = Spaceship::ConnectAPI::BundleId.find(identifier) || Spaceship::ConnectAPI::BundleId.create(name: name, identifier: identifier)
+      capabilities.each { |capability|
+        bundle_id.create_capability(capability)
+      }
     end
-#
 
     configure_bundle_id("Loop", "com.#{TEAMID}.loopkit.Loop", [
       Spaceship::ConnectAPI::BundleIdCapability::Type::APP_GROUPS,
