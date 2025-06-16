@@ -1,3 +1,3 @@
 source "https://rubygems.org"
 
-gem "fastlane", path: "./bpd362/fastlane"
+gem "fastlane", git: "https://github.com/bpd362/fastlane"
