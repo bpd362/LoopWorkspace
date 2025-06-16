@@ -175,7 +175,7 @@ platform :ios do
 #      capabilities.each { |capability|
 #        bundle_id.create_capability(capability)
 #      }
-    end
+#    end
 
     configure_bundle_id("Loop", "com.#{TEAMID}.loopkit.Loop", [
       Spaceship::ConnectAPI::BundleIdCapability::Type::APP_GROUPS,
