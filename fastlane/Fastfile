@@ -170,11 +170,11 @@ platform :ios do
       key_content: "#{FASTLANE_KEY}"
     )
 
-    def configure_bundle_id(name, identifier, capabilities)
-      bundle_id = Spaceship::ConnectAPI::BundleId.find(identifier) || Spaceship::ConnectAPI::BundleId.create(name: name, identifier: identifier)
-      capabilities.each { |capability|
-        bundle_id.create_capability(capability)
-      }
+%%    def configure_bundle_id(name, identifier, capabilities)
+%%      bundle_id = Spaceship::ConnectAPI::BundleId.find(identifier) || Spaceship::ConnectAPI::BundleId.create(name: name, identifier: identifier)
+%%      capabilities.each { |capability|
+%%        bundle_id.create_capability(capability)
+%%      }
     end
 
     configure_bundle_id("Loop", "com.#{TEAMID}.loopkit.Loop", [
